@@ -1,9 +1,10 @@
 import os
 import pydantic
 
-from utils import tv
+# from utils import tv
 from utils import movie
-from utils import general
+
+# from utils import general
 
 
 def driver(movieDBKey: str, path: str):
@@ -36,6 +37,6 @@ def driver(movieDBKey: str, path: str):
 if __name__ == "__main__":
     # API keys
     movieDBKey = "3da8364d372f30e6c9a6e734c2d2780d"
-    path = "./media"
+    path = "/mnt/external_5tb/compressed"
 
     driver(movieDBKey, path)
