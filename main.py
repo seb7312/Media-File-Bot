@@ -28,10 +28,14 @@ def driver(movieDBKey: str, path: str):
 
     for i, file in enumerate(files):
         title, year = movie.movie_search(files[file], movieDBKey)
-        print(files[file])
+        files[file] = {}
+        files[file]["year"] = year
+        files[file]["title"] = title
 
     for i, file in enumerate(files):
-        print(f"""{i+1:2}) {file:^{max_file_length}} -> {title} ({year})""")
+        print(
+            f"""{i+1:2}) {file:^{max_file_length}} -> {files[file]['title']} ({files[file]['year']})"""
+        )
 
 
 if __name__ == "__main__":
