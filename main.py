@@ -34,13 +34,25 @@ def driver(movieDBKey: str, path: str):
 
     for i, file in enumerate(files):
         print(
-            f"""{i+1:2}) {file:^{max_file_length}} -> {files[file]['title']} ({files[file]['year']})"""
+            f"""{i+1:2}) {file:^{max_file_length}} -> {os.path.join(path, f"{files[file]['title']} ({files[file]['year']})", f"{files[file]['title']} ({files[file]['year']}){os.path.splitext(file)[-1]}")}"""
+        )
+        os.makedirs(
+            os.path.join(path, f"{files[file]['title']} ({files[file]['year']})")
+        )
+        os.rename(
+            os.path.join(path, file),
+            os.path.join(
+                path,
+                f"{files[file]['title']} ({files[file]['year']})",
+                f"{files[file]['title']} ({files[file]['year']}){os.path.splitext(file)[-1]}",
+            ),
         )
 
 
 if __name__ == "__main__":
     # API keys
     movieDBKey = "3da8364d372f30e6c9a6e734c2d2780d"
+    # path = "./media"
     path = "/mnt/external_5tb/compressed"
 
     driver(movieDBKey, path)
